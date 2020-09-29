@@ -1,32 +1,38 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id='app'>
+     <router-view></router-view>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  props: { // 父辈向子辈传参
+  },
+  name: 'app',
+  data () {
+    return {
 
-#nav {
-  padding: 30px;
-}
+    }
+  },
+  created () { // 实例被创建之后执行代码
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  },
+  computed: { // 计算属性
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+  },
+  components: { // 组件的引用
+
+  },
+  methods: { // 方法
+
+  },
+  mounted () { // 页面进入时加载内容
+
+  },
+  watch: { // 监测变化
+
+  }
 }
+</script>
+<style scoped lang='scss'>
 </style>
