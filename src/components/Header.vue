@@ -1,7 +1,7 @@
 <template>
   <div class="Header">
     <mt-header title="VUEMUSIC" fixed>
-      <router-link to="/" slot="left">
+      <router-link to="/more" slot="left">
         <mt-button icon="more"></mt-button>
       </router-link>
       <mt-button icon="search" slot="right"></mt-button>    

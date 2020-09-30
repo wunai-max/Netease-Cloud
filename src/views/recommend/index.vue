@@ -4,17 +4,23 @@
     <div class="content">
       <h2>最热歌单</h2>
       <div class="main">
-        <dl
+        <ul
           v-infinite-scroll="getMuics"
           infinite-scroll-disabled="loading"
-          infinite-scroll-distance="20"
-          v-for="item in listdata"
-          :key="item.id"
-          @click="deatil(item.id)"
+          infinite-scroll-distance="10"
         >
-          <dt><img :src="item.coverImgUrl" alt="" /></dt>
-          <dd>{{ item.name }}</dd>
-        </dl>
+          <li v-for="item in listdata" :key="item.id" @click="deatil(item.id)">
+            <div class="dt"><img :src="item.coverImgUrl" alt="" /></div>
+            <div class="dd">{{ item.name }}</div>
+          </li>
+        </ul>
+        <mt-spinner
+          type="fading-circle"
+          class="loading"
+          v-if="showloading"
+          color="#26a2ff"
+        >
+        </mt-spinner>
       </div>
     </div>
   </div>
@@ -33,13 +39,14 @@ export default {
     return {
       listdata: [],
       page: 1,
-      pagesize: 12,
+      pagesize: 18,
       loading: false,
+      showloading: false,
     };
   },
   created() {
     // 实例被创建之后执行代码
-    this.getMuics();
+    //  this.getMuics();
   },
   computed: {
     // 计算属性
@@ -53,36 +60,40 @@ export default {
 
     //调取推荐热歌单
     getMuics() {
+      console.log("ss");
       this.loading = true;
+      this.showloading = true;
       const start = (this.page - 1) * this.pagesize; // 从第几条开始
       const end = this.pagesize;
-      this.$http
-        .post(
-          `/top/playlist?offset=${start}&limit=${end}&order=hot`
-        )
-        .then((res) => {
-          console.log(res);
-          if (res.data.code == 200) {
+      setTimeout(() => {
+        this.$http
+          .post(`/top/playlist?offset=${start}&limit=${end}&order=hot`)
+          .then((res) => {
+            this.showloading = false;
+            // console.log(res);
             const list = res.data.playlists;
-            this.listdata = list;
-            // this.listdata = this.listdata.concat(list);
+            console.log(this.listdata);
+            this.listdata = this.listdata.concat(list);
+            //
             // if (this.listdata.length < this.pagesize) {
             //   //判断是不是已经没有数据了
             //   // this.showmore=true;
             // } else {
-            //   // this.page = this.page+1; // 还有数据page+1
+            //   this.page = this.page+1; // 还有数据page+1
             //   // console.log(this.page);
-            //   this.loading = false; //开关打开
+            //   //开关打开
             // }
-          }
-        });
+          });
+      }, 1000);
+      this.page = this.page + 1;
+      this.loading = false;
     },
     deatil(id) {
       this.$router.push({
         path: "/deatil",
-         query: {
-            id: id,
-          },
+        query: {
+          id: id,
+        },
       });
     },
   },
@@ -105,20 +116,30 @@ export default {
     margin-left: 10px;
   }
   .main {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    dl {
-      margin-top: 10px;
-      width: 110px;
-      img {
-        width: 100%;
+    ul {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      overflow: hidden;
+      li {
+        margin-top: 10px;
+        width: 110px;
+        .dt {
+          img {
+            width: 100%;
+          }
+        }
+        .dd {
+          width: 100%;
+          text-align: center;
+          font-size: 12px;
+        }
       }
-      dd {
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
-      }
+    }
+    .loading {
+      display: block;
+      padding-left: 160px;
+      text-align: center;
     }
   }
 }

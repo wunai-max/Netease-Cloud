@@ -49,6 +49,23 @@ const routes = [{
     name: 'Play',
     component: () => import('../views/play/index.vue')
   },
+  {
+    path: '/more',
+    name: 'More',
+    component: () => import('../views/more/index.vue'),
+    redirect: "/more/like",
+    children: [{
+      path: "like",
+      name: "Like",
+      component: () => import("../views/more/like/index.vue")
+    },
+    {
+      path: "mine",
+      name: "Mine",
+      component: () => import("../views/more/mine/index.vue")
+    },
+  ]
+  },
 
 ]
 
