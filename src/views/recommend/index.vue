@@ -65,7 +65,7 @@ export default {
       this.showloading = true;
       const start = (this.page - 1) * this.pagesize; // 从第几条开始
       const end = this.pagesize;
-      setTimeout(() => {
+      // setTimeout(() => {
         this.$http
           .post(`/top/playlist?offset=${start}&limit=${end}&order=hot`)
           .then((res) => {
@@ -84,7 +84,7 @@ export default {
             //   //开关打开
             // }
           });
-      }, 1000);
+      // }, 1000);
       this.page = this.page + 1;
       this.loading = false;
     },
