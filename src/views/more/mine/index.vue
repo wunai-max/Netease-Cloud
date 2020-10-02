@@ -1,7 +1,7 @@
 <template>
   <div class='mine'>
      <div class="content">
-         wode
+        <div class="ss"></div>
      </div>
   </div>
 </template>
