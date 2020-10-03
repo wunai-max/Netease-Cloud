@@ -2,6 +2,7 @@
   <div class='mine'>
      <div class="content">
         <div class="ss"></div>
+        <div class="down"></div>
      </div>
   </div>
 </template>
