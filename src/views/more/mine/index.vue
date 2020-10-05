@@ -4,7 +4,9 @@
         <div class="ss">
           <img src="" alt="">
         </div>
-        <div class="down"></div>
+        <div class="down">
+          <img src="" alt="">
+        </div>
      </div>
   </div>
 </template>
