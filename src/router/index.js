@@ -66,6 +66,11 @@ const routes = [{
     },
   ]
   },
+  {
+    path: '/mv',
+    name: 'Mv',
+    component: () => import('../views/mv/index.vue')
+  },
 
 ]
 

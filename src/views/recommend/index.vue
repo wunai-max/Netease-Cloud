@@ -46,7 +46,7 @@ export default {
   },
   created() {
     // 实例被创建之后执行代码
-    //  this.getMuics();
+
   },
   computed: {
     // 计算属性

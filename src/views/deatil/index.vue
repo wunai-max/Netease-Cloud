@@ -55,11 +55,11 @@ export default {
   methods: {
     // 方法
     getlist(id){
-        this.$http
+        this.$http7
         .post(
           `/playlist/detail?id=${id}`
         ).then(res=>{
-           console.log(res)
+          //  console.log(res)
             if(res.data.code==200){
                 this.imgurl=res.data.playlist.coverImgUrl;
                 this.title=res.data.playlist.name;
