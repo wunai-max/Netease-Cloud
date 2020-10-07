@@ -55,7 +55,7 @@ export default {
   methods: {
     // 方法
     getlist(id){
-        this.$http7
+        this.$http
         .post(
           `/playlist/detail?id=${id}`
         ).then(res=>{
